@@ -14,6 +14,7 @@
         "prebuild-release": "npm run clean",
         "verify-release": "npm run build && concurrently --kill-others-on-fail npm:lint npm:test:karma npm:test:jest npm:test:vitest",
         "build-release": "npm run verify-release",
+        "postbuild-release": "typedoc main/index.ts",
         "watch-build": "tsc --watch -p main/tsconfig.json",
         "test": "npm run test:karma",
         "test:karma": "karma start --singleRun --browsers ChromeHeadlessNoSandbox",
@@ -93,13 +94,14 @@
     },
     "dependencies": {
         "lodash": "^4.17.16",
+        "typedoc": "^0.27.6",
         "uuid": "^7.0.3"
     },
     "publishConfig": {
         "access": "public"
     },
     "jest-comments": [
-        "to run jest tests you will have to install jest first. This conflicts with karma so not installed by default", 
+        "to run jest tests you will have to install jest first. This conflicts with karma so not installed by default",
         "we specify the config here rather than in a jest.config.js file as package.json config is more compatible with older versions of jest that we test against"
     ],
     "jest": {
